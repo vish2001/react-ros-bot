@@ -1,0 +1,39 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/vishy/catkin_ws_ned/devel/include/**",
+        "/home/vishy/catkin_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/conveyor_interface/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/cpu_interface/include/**",
+        "/home/vishy/catkin_ws/src/vision_opencv/cv_bridge/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/dynamixel_driver/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/dynamixel_sdk/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/fake_interface/include/**",
+        "/home/vishy/catkin_ws/src/vision_opencv/image_geometry/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/joints_interface/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/mcp_can_rpi/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/niryo_robot_debug/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/niryo_robot_hardware_interface/include/**",
+        "/home/vishy/catkin_ws/src/smb_common/smb_gazebo/include/**",
+        "/home/vishy/catkin_ws/src/smb_highlevel_controller/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/stepper_driver/include/**",
+        "/home/vishy/catkin_ws_ned/src/tests/include/**",
+        "/home/vishy/catkin_ws_ned/src/niryo_robot_hardware_stack/tools_interface/include/**",
+        "/home/vishy/catkin_ws/src/velodyne_simulator/velodyne_gazebo_plugins/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
