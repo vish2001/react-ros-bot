@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container} from "react-bootstrap";
-import {Route,BrowserRouter as Router,Routes} from "react-router-dom";
+import {Route,HashRouter as Router,Routes} from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 class Body extends Component{
