@@ -2,11 +2,21 @@
 
 clone the ROS workspace for the robot(turtlebot3,etc.) from the following link: https://github.com/ROBOTIS-GIT/turtlebot3.git
 
+Build the workspace with "catkin build" and then source it with "source devel/setup.bash".
 
+Launch commands:
 
+### `roslaunch turtlebot3_gazebo turtlebot3_house.launch`
 
+### `roslaunch rosbridge_server rosbridge_websocket.launch `
 
+Edit the ROSBridge server IP in config.js.
 
+## Results:
+
+https://user-images.githubusercontent.com/55589910/175820940-cfd47e38-f406-4dd6-91dd-81eb34663dd9.mp4
+
+https://user-images.githubusercontent.com/55589910/175820943-ff11e454-1c45-466c-b815-2800407792be.mp4
 
 
 
