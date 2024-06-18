@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Row,Col,Container,Button } from "react-bootstrap";
 import  Config from "../scripts/config";
+import positionImage from '../traffic-light.png';
+import positionImage2 from '../stop.png';
+import positionImage3 from '../41+gelS+89L.jpg';
+
 import * as Three from "three";
 class RobotState extends Component{
     state = {
         ros:null,
-        x:0,
-        y:0,
-        orientation:0,
-        linear_velocity:0,
-        angular_velocity:0
+        stop_count:0,
+        traffic_count:0,
+        duckie_count:0
     };
     constructor(){
         super(); 
@@ -38,57 +40,55 @@ class RobotState extends Component{
         }
         
     }
-    componentDidMount(){
-        this.getRobotState();
-    }
-    getRobotState() {
-    var pose_subscriber = new window.ROSLIB.Topic({
-        ros:this.state.ros,
-        name: "/amcl_pose",
-        messageType:"geometry_msgs/PoseWithCovarianceStamped"
-    });
-     pose_subscriber.subscribe((message) => {
-         this.setState({x: message.pose.pose.position.x.toFixed(2)});
-         this.setState({y: message.pose.pose.position.y.toFixed(2)});
-         this.setState({orientation: this.getOrientationFromQuaternion(message.pose.pose.orientation).toFixed(2)
-        });
-     });
-     var velocity_subscriber = new window.ROSLIB.Topic({
-         ros:this.state.ros,
-         name:"/odom",
-         messageType:"nav_msgs/Odometry"
-     });
-     velocity_subscriber.subscribe((message)=>{
-        this.setState({linear_velocity:message.twist.twist.linear.x.toFixed(2)});
-        this.setState({angular_velocity:message.twist.twist.angular.z.toFixed(2)});
-     });
-    }
-    getOrientationFromQuaternion(quaternion){
-        var q = new Three.Quaternion(quaternion.x,
-            quaternion.y,
-            quaternion.z,
-            quaternion.w
-            );
-        var RPY = new Three.Euler().setFromQuaternion(q);
-        return RPY["_z"]*(180/Math.PI)//yaw
-    }
+    // componentDidMount(){
+    //     this.getRobotState();
+    // }
+    // getRobotState() {
+    // var count_subscriber = new window.ROSLIB.Topic({
+    //     ros:this.state.ros,
+    //     name: "/db4/counts/x1",
+    //     messageType:"std_msgs/Int32"
+    // });
+    // count_Subscriber.subscribe((message) => {
+    //     // Update state.x with the received message data
+    //     this.state.stop_count(message.data);
+    // });
+    // }
 
     render(){
         return(
             <div>
                <Row>
                    <Col>
-                    <h4 className='mt-4'>Position</h4>
-                    <p className='mt-0'>x: {this.state.x}</p>
-                    <p className='mt-0'>y: {this.state.y}</p>
-                    <p className='mt-0'>orientation: {this.state.orientation}</p>
+                    <h4 className='mt-4'>Object counts:-</h4>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <img src={positionImage} alt="Position" width="100" height="100" style={{ marginRight: '10px' }}/>
+                                <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                                <p className='mt-0' style={{ marginLeft: '10px' }}> {this.state.stop_count}</p>
+                                </div>
+                           </div>
                    </Col>
                </Row>
                <Row>
                    <Col>
-                    <h4 className='mt-4'>Velocities</h4>
-                    <p className='mt-0'>linear velocity: {this.state.linear_velocity}</p>
-                    <p className='mt-0'>angular velocity: {this.state.angular_velocity}</p>
+                    <p></p>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={positionImage2} alt="Position" width="100" height="100" style={{ marginRight: '10px' }}/>
+                            <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                            <p className='mt-0' style={{ marginLeft: '10px' }}> {this.state.x}</p>
+                            </div>
+                        </div>
+                   </Col>
+               </Row>
+               <Row>
+                   <Col>
+                    <p></p>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <img src={positionImage3} alt="Position" width="100" height="100" style={{ marginRight: '10px' }}/>
+                            <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                            <p className='mt-0' style={{ marginLeft: '10px' }}> {this.state.x}</p>
+                            </div>
+                        </div>
                    </Col>
                </Row>
             </div>

@@ -6,11 +6,10 @@ class Header extends Component{
          <Container>
          <Navbar bg="dark" variant = "dark" expand="lg" collapseOnSelect>
         
-          <Navbar.Brand href="#home">React-ros-robot</Navbar.Brand>
+          <Navbar.Brand href="#home">shape Quackulator</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/About">About</Nav.Link>            
            </Nav>
           </Navbar.Collapse>

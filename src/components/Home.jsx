@@ -28,9 +28,7 @@ class Home extends Component{
                         </Col>
                     </Row>
                    <Row>
-                       <Col>
-                          <RobotState />
-                       </Col>
+                          <RobotState/>    
                    </Row>
                     
                 </Container>

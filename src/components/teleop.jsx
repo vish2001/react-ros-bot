@@ -41,21 +41,12 @@ class Teleop extends Component {
         var cmd_vel = new window.ROSLIB.Topic({
           ros:this.state.ros,
           name:  Config.CMD_VEL_TOPIC,
-          messageType:"geometry_msgs/Twist"
+          messageType:"duckietown_msgs/Twist2DStamped"
         })
         //we need to create a twist message to be published to rosbridge
-        var twist = new window.ROSLIB.Message({
-            linear:{
-                x: event.y/100,
-                y: 0.0,
-                z: 0.0,
-            },
-            angular:{
-                x: 0.0,
-                y: 0.0,
-                z: -event.x/100,
-                },
-            });
+        var twist = new window.ROSLIB.Message(
+            
+            {header: {stamp: '', frame_id: ""}, v: event.y/100 , omega: -event.x/100});
         //we need to publish the message on the cmd_vel topic
         cmd_vel.publish(twist)
     }
@@ -64,29 +55,17 @@ class Teleop extends Component {
         var cmd_vel = new window.ROSLIB.Topic({
             ros:this.state.ros,
             name:  Config.CMD_VEL_TOPIC,
-            messageType:"geometry_msgs/Twist"
+            messageType:"duckietown_msgs/Twist2DStamped"
           })
           //we need to create a twist message to be published to rosbridge
-          var twist = new window.ROSLIB.Message({
-              linear:{
-                  x: 0,
-                  y: 0.0,
-                  z: 0.0,
-              },
-              angular:{
-                  x: 0.0,
-                  y: 0.0,
-                  z: 0,
-                  },
-              });
+          var twist = new window.ROSLIB.Message({header: {stamp:'', frame_id: ""}, v: event.y/1000 , omega: -event.x/1000});
           //we need to publish the message on the cmd_vel topic
           cmd_vel.publish(twist)
     }
     render() { 
         return (
         <div align="center">
-            <h2>Teleoperation
-            </h2>
+            <h2>Teleoperation</h2>
             <br/>
             <br/>
             <Joystick 
