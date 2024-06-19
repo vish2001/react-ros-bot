@@ -3,7 +3,7 @@ import { Row,Col,Container } from "react-bootstrap";
 import Connection from "./Connection";
 import Teleop from "./teleop";
 import RobotState from "./RobotState"
-import Map from "./map";
+import Feed from "./Feed";
 class Home extends Component{
     state = {
        
@@ -13,7 +13,7 @@ class Home extends Component{
         return (
             <div>
                 <Container>
-                    <h1 className="text-center mt-3">Robot Control Page</h1>
+                    <h1 className="text-center mt-3">Mission Control Center</h1>
                     <Row>
                         <Col> 
                             <Connection />
@@ -24,7 +24,7 @@ class Home extends Component{
                             <Teleop />
                         </Col>
                         <Col>
-                            <Map />
+                            <Feed />
                         </Col>
                     </Row>
                    <Row>

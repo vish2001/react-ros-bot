@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Config from "../scripts/config";
 
-class Map extends Component {
+class Feed extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,7 +46,8 @@ class Map extends Component {
     subscribeToTopic() {
         const topic = new window.ROSLIB.Topic({
             ros: this.state.ros,
-            name: '/db4/camera_node/image/compressed',
+            //name: '/db4/camera_node/image/compressed',
+            name: '/db4/object_detection_node/image/compressed',
             messageType: 'sensor_msgs/CompressedImage'
         });
 
@@ -72,4 +73,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default Feed;

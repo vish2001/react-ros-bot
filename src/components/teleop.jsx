@@ -46,7 +46,7 @@ class Teleop extends Component {
         //we need to create a twist message to be published to rosbridge
         var twist = new window.ROSLIB.Message(
             
-            {header: {stamp: '', frame_id: ""}, v: event.y/100 , omega: -event.x/100});
+            {header: {stamp: '', frame_id: ""}, v: event.y/80 , omega: -event.x/100});
         //we need to publish the message on the cmd_vel topic
         cmd_vel.publish(twist)
     }

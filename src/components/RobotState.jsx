@@ -3,9 +3,6 @@ import { Row,Col,Container,Button } from "react-bootstrap";
 import  Config from "../scripts/config";
 import positionImage from '../traffic-light.png';
 import positionImage2 from '../stop.png';
-import positionImage3 from '../41+gelS+89L.jpg';
-
-import * as Three from "three";
 class RobotState extends Component{
     state = {
         ros:null,
@@ -17,12 +14,16 @@ class RobotState extends Component{
         super(); 
         this.init_connection();
     }
+
     init_connection(){
         this.state.ros = new window.ROSLIB.Ros();//add window keyword as javascript library added in index.html
         console.log(this.state.ros);
         this.state.ros.on("connection",()=>{
             console.log("Connection established");
             this.setState({Connected:true});
+            this.setState({stop_count:0});
+            this.setState({traffic_count:0});
+            this.getRobotState();
         });
         this.state.ros.on("close",()=>{
             console.log("connection is closed");
@@ -40,20 +41,30 @@ class RobotState extends Component{
         }
         
     }
-    // componentDidMount(){
-    //     this.getRobotState();
-    // }
-    // getRobotState() {
-    // var count_subscriber = new window.ROSLIB.Topic({
-    //     ros:this.state.ros,
-    //     name: "/db4/counts/x1",
-    //     messageType:"std_msgs/Int32"
-    // });
-    // count_Subscriber.subscribe((message) => {
-    //     // Update state.x with the received message data
-    //     this.state.stop_count(message.data);
-    // });
-    // }
+    getRobotState() {
+    var count_subscriber1 = new window.ROSLIB.Topic({
+        ros:this.state.ros,
+        name: "/db4/object_detection_node/stop_count",
+        messageType:"std_msgs/Int32"
+    });
+    count_subscriber1.subscribe((message) => {
+        // Update state.x with the received message data
+        const stop_count = message.data
+        console.log(message);
+        this.setState({stop_count});
+    });
+    var count_subscriber2 = new window.ROSLIB.Topic({
+        ros:this.state.ros,
+        name: "/db4/object_detection_node/traffic_light_count",
+        messageType:"std_msgs/Int32"
+    });
+    count_subscriber2.subscribe((message) => {
+        // Update state.x with the received message data
+        const traffic_count = message.data
+        console.log("connection problem", message);
+        this.setState({traffic_count});
+    });
+    }
 
     render(){
         return(
@@ -64,7 +75,7 @@ class RobotState extends Component{
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <img src={positionImage} alt="Position" width="100" height="100" style={{ marginRight: '10px' }}/>
                                 <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                                <p className='mt-0' style={{ marginLeft: '10px' }}> {this.state.stop_count}</p>
+                                <p className='mt-0' style={{ marginLeft: '10px', color: 'black' }}> {this.state.traffic_count}</p>
                                 </div>
                            </div>
                    </Col>
@@ -75,12 +86,12 @@ class RobotState extends Component{
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img src={positionImage2} alt="Position" width="100" height="100" style={{ marginRight: '10px' }}/>
                             <div style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-                            <p className='mt-0' style={{ marginLeft: '10px' }}> {this.state.x}</p>
+                            <p className='mt-0' style={{ marginLeft: '10px', color: 'black'  }}> {this.state.stop_count}</p>
                             </div>
                         </div>
                    </Col>
                </Row>
-               <Row>
+               {/* <Row>
                    <Col>
                     <p></p>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -90,7 +101,7 @@ class RobotState extends Component{
                             </div>
                         </div>
                    </Col>
-               </Row>
+               </Row> */}
             </div>
         );
     }
